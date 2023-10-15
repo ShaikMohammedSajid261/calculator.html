@@ -1,54 +1,56 @@
-# User authentication system using Python
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
 
-# Define the user database (a simple text file)
-USER_DATABASE = "user_db.txt"
 
-# Function to register a new user
-def register():
-    username = input("Enter a username: ")
-    password = input("Enter a password: ")
+.container{
+    width: 100%;
+    height: 100vh;
+    background: #b992b5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calculator{
+    background: #3a4452;
+    padding: 20px;
+    border-radius: 10px;
+}
+.calculator form input{
+    border: 0;
+    outline: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),5px 5px 15px rgba(0, 0, 0, 0.2);
+    background: transparent;
+    font-size: 20px;
+    color: #b1dcdd;
+    cursor: pointer;
+    margin: 10px;
+}
 
-    # Check if the username already exists
-    with open(USER_DATABASE, "r") as file:
-        for line in file:
-            if username in line:
-                print("Username already exists. Please choose a different one.")
-                return
+form .display{
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+form .display input{
+    text-align: right;
+    flex: 1;
+    font-size: 45px;
+    box-shadow: none;
+}
+form input.equal{
+    width: 145px;
+}
 
-    # Store the new user's credentials
-    with open(USER_DATABASE, "a") as file:
-        file.write(f"{username}:{password}\n")
-    print("Registration successful.")
 
-# Function to log in a user
-def login():
-    username = input("Enter your username: ")
-    password = input("Enter your password: ")
 
-    # Check if the username and password match
-    with open(USER_DATABASE, "r") as file:
-        for line in file:
-            stored_username, stored_password = line.strip().split(":")
-            if username == stored_username and password == stored_password:
-                print("Login successful.")
-                return
+form input.operator{
+    color: #ecedee;
+}
 
-    print("Login failed. Please check your credentials.")
-
-# Main program
-while True:
-    print("\nWelcome to the User Authentication System")
-    print("1. Register")
-    print("2. Login")
-    print("3. Exit")
-    choice = input("Select an option: ")
-
-    if choice == "1":
-        register()
-    elif choice == "2":
-        login()
-    elif choice == "3":
-        print("Goodbye!")
-        break
-    else:
-        print("Invalid choice. Please try again.")
